@@ -1,19 +1,19 @@
 const PUZZLE_DIFFICULTY = 4;
         const PUZZLE_HOVER_TINT = '#009900';
 
-        var _stage;
-        var _canvas;
+        let _stage;
+        let _canvas;
 
-        var _img;
-        var _pieces;
-        var _puzzleWidth;
-        var _puzzleHeight;
-        var _pieceWidth;
-        var _pieceHeight;
-        var _currentPiece;
-        var _currentDropPiece;  
+        let _img;
+        let _pieces;
+        let _puzzleWidth;
+        let _puzzleHeight;
+        let _pieceWidth;
+        let _pieceHeight;
+        let _currentPiece;
+        let _currentDropPiece;  
 
-        var _mouse;
+        let _mouse;
 
         function init(){
             _img = new Image();
@@ -56,10 +56,10 @@ const PUZZLE_DIFFICULTY = 4;
             _stage.fillText(msg,_puzzleWidth / 2,_puzzleHeight - 20);
         }
         function buildPieces(){
-            var i;
-            var piece;
-            var xPos = 0;
-            var yPos = 0;
+            let i;
+            let piece;
+            let xPos = 0;
+            let yPos = 0;
             for(i = 0;i < PUZZLE_DIFFICULTY * PUZZLE_DIFFICULTY;i++){
                 piece = {};
                 piece.sx = xPos;
@@ -76,10 +76,10 @@ const PUZZLE_DIFFICULTY = 4;
         function shufflePuzzle(){
             _pieces = shuffleArray(_pieces);
             _stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
-            var i;
-            var piece;
-            var xPos = 0;
-            var yPos = 0;
+            let i;
+            let piece;
+            let xPos = 0;
+            let yPos = 0;
             for(i = 0;i < _pieces.length;i++){
                 piece = _pieces[i];
                 piece.xPos = xPos;
@@ -115,8 +115,8 @@ const PUZZLE_DIFFICULTY = 4;
             }
         }
         function checkPieceClicked(){
-            var i;
-            var piece;
+            let i;
+            let piece;
             for(i = 0;i < _pieces.length;i++){
                 piece = _pieces[i];
                 if(_mouse.x < piece.xPos || _mouse.x > (piece.xPos + _pieceWidth) || _mouse.y < piece.yPos || _mouse.y > (piece.yPos + _pieceHeight)){
@@ -139,8 +139,8 @@ const PUZZLE_DIFFICULTY = 4;
                 _mouse.y = e.offsetY - _canvas.offsetTop;
             }
             _stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
-            var i;
-            var piece;
+            let i;
+            let piece;
             for(i = 0;i < _pieces.length;i++){
                 piece = _pieces[i];
                 if(piece == _currentPiece){
@@ -172,7 +172,7 @@ const PUZZLE_DIFFICULTY = 4;
             document.onmousemove = null;
             document.onmouseup = null;
             if(_currentDropPiece != null){
-                var tmp = {xPos:_currentPiece.xPos,yPos:_currentPiece.yPos};
+                let tmp = {xPos:_currentPiece.xPos,yPos:_currentPiece.yPos};
                 _currentPiece.xPos = _currentDropPiece.xPos;
                 _currentPiece.yPos = _currentDropPiece.yPos;
                 _currentDropPiece.xPos = tmp.xPos;
@@ -182,9 +182,9 @@ const PUZZLE_DIFFICULTY = 4;
         }
         function resetPuzzleAndCheckWin(){
             _stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
-            var gameWin = true;
-            var i;
-            var piece;
+            let gameWin = true;
+            let i;
+            let piece;
             for(i = 0;i < _pieces.length;i++){
                 piece = _pieces[i];
                 _stage.drawImage(_img, piece.sx, piece.sy, _pieceWidth, _pieceHeight, piece.xPos, piece.yPos, _pieceWidth, _pieceHeight);
@@ -204,6 +204,6 @@ const PUZZLE_DIFFICULTY = 4;
             initPuzzle();
         }
         function shuffleArray(o){
-            for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            for(let j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
             return o;
         }
