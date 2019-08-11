@@ -7,4 +7,4 @@ function maxArray(arr) {
     }
     return max;
 }
-console.log(max([1,400,20,-56])); //400 - the maximum 
+console.log(maxArray([1,400,20,-56])); //400 - the maximum 
